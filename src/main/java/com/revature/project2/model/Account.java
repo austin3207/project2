@@ -7,16 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
+import org.hibernate.annotations.Type;
+
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 @Entity
-@Table(name="account")
+@Table(name="account", schema="project2")
 @Data
-public class Account {
+public class Account extends SQLTypes{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -28,7 +26,9 @@ public class Account {
 	private String lastName;
 	@Column(name= "password")
 	private String password;
-	@Column(name="liked_recipes")
+	@Type(type="int-array")
+	@Column(name="liked_recipes",
+			columnDefinition="int[]")
 	private int[] likedRecipes;
 
 }

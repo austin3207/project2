@@ -80,6 +80,14 @@
 			<version>3.141.59</version>
 		</dependency>
 
+
+	
+		<dependency>
+    		<groupId>com.vladmihalcea</groupId>
+    		<artifactId>hibernate-types-55</artifactId>
+    		<version>2.14.0</version>
+		</dependency>	
+
 		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-core -->
 	<dependency>
 	    <groupId>io.cucumber</groupId>
@@ -114,6 +122,7 @@
 		<artifactId>guava</artifactId>
 		<version>23.0</version>
 	</dependency>
+
 	</dependencies>
 
 	<build>
