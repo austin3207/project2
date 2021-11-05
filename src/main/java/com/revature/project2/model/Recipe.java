@@ -1,5 +1,7 @@
 package com.revature.project2.model;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,13 +9,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 import lombok.Data;
 
 @Entity
-@Table(name="recipe")
+@Table(name="recipe", schema="project2")
 @Data
-public class Recipe {
+public class Recipe extends SQLTypes{
 	@Id
+	@Column(name="recipe_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int recipeId;
 	@Column(name= "name")
@@ -26,8 +31,11 @@ public class Recipe {
 	private String prepMethod;
 	@Column(name= "description")
 	private String description;
-	@Column(name= "ingredients")
+	@Type(type="string-array")
+	@Column(name= "ingredients",
+			columnDefinition = "string[]")
 	private String[] ingredients;
 	@Column(name= "user_id")
 	private int userId;
+	
 }
