@@ -47,8 +47,6 @@ public class Login extends StepDefinition {
 //		if(url.equals(accountComponent.getURL())) {
 //			System.out.println("Profile page loaded");
 //		}
+		getDriver().close();
 	}
-
-	
-
 }

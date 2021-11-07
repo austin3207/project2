@@ -19,6 +19,7 @@ public class TestAccountServiceImpl {
 		TestAccountRepository testRepository = new TestAccountRepository();
 
 		// Create Account
+
 		Account account = new Account();
 		account.setEmail("zachary.miller@revature.net");
 		account.setFirstName("Zachary");
@@ -192,6 +193,7 @@ public class TestAccountServiceImpl {
 			System.out.println(accountsView);
 		}
 
+
 		// Verify that the Account objects are being located by their email
 		for (Account accountIteration : testRepository.findAll()) {
 			String email = accountIteration.getEmail(); // Get the id for the first object returned and store it
@@ -325,9 +327,10 @@ public class TestAccountServiceImpl {
 		}
 
 		/*
-		 * Get the id of the first object Pass the stored id as an argument in the
-		 * repository's findById() method Compare the object with the Account object If
-		 * the same, delete the object
+		 * Get the id of the first object 
+     * Pass the stored id as an argument in the repository's findById() method
+		 * Compare the object with the Account object 
+		 * If the same, delete the object
 		 */
 		int id = account.getId(); // Get the id for the first object returned and store it
 		Account thisAccount = testRepository.findById(id);
@@ -338,7 +341,7 @@ public class TestAccountServiceImpl {
 			});
 			Assertions.assertEquals(1, testRepository.findAll().size());
 		}
-
+    
 		for (Account accountIteration : testRepository.findAll()) {
 			testRepository.delete(accountIteration.getId());
 		}
