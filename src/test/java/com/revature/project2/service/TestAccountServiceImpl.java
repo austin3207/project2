@@ -19,7 +19,12 @@ public class TestAccountServiceImpl {
 		TestAccountRepository testRepository = new TestAccountRepository();
 
 		// Create Account
-		Account account = new Account("zachary.miller@revature.net", "Zachary", "Miller", "P@ssw0rd");
+
+		Account account = new Account();
+		account.setEmail("zachary.miller@revature.net");
+		account.setFirstName("Zachary");
+		account.setLastName("Miller");
+		account.setPassword("P@ssw0rd");
 
 		// Ensure the Account object is not empty and print a line confirming
 		Assertions.assertNotNull(account);
@@ -54,9 +59,17 @@ public class TestAccountServiceImpl {
 		TestAccountRepository testRepository = new TestAccountRepository();
 
 		// Create Accounts
-		Account account = new Account("zachary.miller@revature.net", "Zachary", "Miller", "P@ssw0rd");
+		Account account = new Account();
+		account.setEmail("zachary.miller@revature.net");
+		account.setFirstName("Zachary");
+		account.setLastName("Miller");
+		account.setPassword("P@ssw0rd");
 
-		Account account2 = new Account("austin.rogers@revature.net", "Austin", "Rogers", "P@ssw0rd");
+		Account account2 = new Account();
+		account2.setEmail("austin.rogers@revature.net");
+		account2.setFirstName("Austin");
+		account2.setLastName("Rogers");
+		account2.setPassword("P@ssw0rd");
 
 		// Ensure neither of the Account objects are empty and print a line confirming
 		Assertions.assertNotNull(account);
@@ -94,9 +107,17 @@ public class TestAccountServiceImpl {
 		TestAccountRepository testRepository = new TestAccountRepository();
 
 		// Create accounts
-		Account account = new Account("zachary.miller@revature.net", "Zachary", "Miller", "P@ssw0rd");
+		Account account = new Account();
+		account.setEmail("zachary.miller@revature.net");
+		account.setFirstName("Zachary");
+		account.setLastName("Miller");
+		account.setPassword("P@ssw0rd");
 
-		Account account2 = new Account("austin.rogers@revature.net", "Austin", "Rogers", "P@ssw0rd");
+		Account account2 = new Account();
+		account2.setEmail("austin.rogers@revature.net");
+		account2.setFirstName("Austin");
+		account2.setLastName("Rogers");
+		account2.setPassword("P@ssw0rd");
 
 		Assertions.assertNotNull(account); // Ensure that the information is stored as an entity
 		Assertions.assertNotNull(account2); // Ensure that the information is stored as an entity
@@ -146,9 +167,17 @@ public class TestAccountServiceImpl {
 		TestAccountRepository testRepository = new TestAccountRepository();
 
 		// Create accounts
-		Account account = new Account("zachary.miller@revature.net", "Zachary", "Miller", "P@ssw0rd");
+		Account account = new Account();
+		account.setEmail("zachary.miller@revature.net");
+		account.setFirstName("Zachary");
+		account.setLastName("Miller");
+		account.setPassword("P@ssw0rd");
 
-		Account account2 = new Account("austin.rogers@revature.net", "Austin", "Rogers", "P@ssw0rd");
+		Account account2 = new Account();
+		account2.setEmail("austin.rogers@revature.net");
+		account2.setFirstName("Austin");
+		account2.setLastName("Rogers");
+		account2.setPassword("P@ssw0rd");
 
 		Assertions.assertNotNull(account); // Ensure that the information is stored as an entity
 		Assertions.assertNotNull(account2); // Ensure that the information is stored as an entity
@@ -164,7 +193,8 @@ public class TestAccountServiceImpl {
 			System.out.println(accountsView);
 		}
 
-		// Verify that the Account objects are being located by their ids
+
+		// Verify that the Account objects are being located by their email
 		for (Account accountIteration : testRepository.findAll()) {
 			String email = accountIteration.getEmail(); // Get the id for the first object returned and store it
 
@@ -198,7 +228,11 @@ public class TestAccountServiceImpl {
 		TestAccountRepository testRepository = new TestAccountRepository();
 
 		// Create Account
-		Account account = new Account("zachary.miller@revature.net", "Zachary", "Miller", "P@ssw0rd");
+		Account account = new Account();
+		account.setEmail("zachary.miller@revature.net");
+		account.setFirstName("Zachary");
+		account.setLastName("Miller");
+		account.setPassword("P@ssw0rd");
 
 		// Ensure the Account object is not empty and print a line confirming
 		Assertions.assertNotNull(account);
@@ -266,9 +300,17 @@ public class TestAccountServiceImpl {
 		TestAccountRepository testRepository = new TestAccountRepository();
 
 		// Create accounts
-		Account account = new Account("zachary.miller@revature.net", "Zachary", "Miller", "P@ssw0rd");
+		Account account = new Account();
+		account.setEmail("zachary.miller@revature.net");
+		account.setFirstName("Zachary");
+		account.setLastName("Miller");
+		account.setPassword("P@ssw0rd");
 
-		Account account2 = new Account("austin.rogers@revature.net", "Austin", "Rogers", "P@ssw0rd");
+		Account account2 = new Account();
+		account2.setEmail("austin.rogers@revature.net");
+		account2.setFirstName("Austin");
+		account2.setLastName("Rogers");
+		account2.setPassword("P@ssw0rd");
 
 		Assertions.assertNotNull(account); // Ensure that the information is stored as an entity
 		Assertions.assertNotNull(account2); // Ensure that the information is stored as an entity
@@ -283,24 +325,23 @@ public class TestAccountServiceImpl {
 		for (Account accountsView : testRepository.findAll()) {
 			System.out.println(accountsView);
 		}
-		
+
 		/*
-		 * Get the id of the first object
-		 * Pass the stored id as an argument in the repository's findById() method
-		 * Compare the object with the Account object
+		 * Get the id of the first object 
+     * Pass the stored id as an argument in the repository's findById() method
+		 * Compare the object with the Account object 
 		 * If the same, delete the object
 		 */
 		int id = account.getId(); // Get the id for the first object returned and store it
 		Account thisAccount = testRepository.findById(id);
-		if(thisAccount == account) {
+		if (thisAccount == account) {
 			testRepository.delete(id);
 			Assertions.assertThrows(NullPointerException.class, () -> {
 				testRepository.findById(id).equals(account);
 			});
 			Assertions.assertEquals(1, testRepository.findAll().size());
 		}
-		
-		
+    
 		for (Account accountIteration : testRepository.findAll()) {
 			testRepository.delete(accountIteration.getId());
 		}
