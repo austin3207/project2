@@ -62,8 +62,8 @@ public class AccountController {
 
 	}
 	@PostMapping("/login")
-	public boolean login(String email, String password) {
-		boolean validLogin = accountService.login(email, password);
+	public boolean login(@RequestBody Account account) {
+		boolean validLogin = accountService.login(account.getEmail(), account.getPassword());
 		return validLogin;
 	}
 //	@PostMapping("/registration")
