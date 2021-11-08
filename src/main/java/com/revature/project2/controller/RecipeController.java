@@ -13,46 +13,47 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.project2.model.Recipe;
 import com.revature.project2.repo.RecipeRepository;
+import com.revature.project2.service.RecipeService;
 
 @RestController
 @RequestMapping("/api")
 public class RecipeController {
 	@Autowired
-	RecipeRepository recipeRepository;
+	RecipeService recipeService;
 	
 	@GetMapping("/recipes")
 	public List<Recipe> findAll() {
 		// TODO Auto-generated method stub
-		return recipeRepository.findAll();
+		return recipeService.findAll();
 	}
 
 	@GetMapping("/recipes/{id}")
 	public Recipe findById(@PathVariable int id) {
 		// TODO Auto-generated method stub
-		return recipeRepository.findById(id).get();
+		return recipeService.findById(id);
 	}
 
 	@GetMapping("/findByCategory/{category}")
 	public List<Recipe> findByCategory(@PathVariable String category) {
 		// TODO Auto-generated method stub
-		return recipeRepository.findByCategory(category);
+		return recipeService.findByCategory(category);
 	}
 
 	@PostMapping("/recipes")
 	public void save(Recipe recipe) {
 		// TODO Auto-generated method stub
-		recipeRepository.save(recipe);
+		recipeService.save(recipe);
 	}
 
 	@PutMapping("/recipes/{id}")
 	public void update(int id, Recipe recipe) {
 		// TODO Auto-generated method stub
-		recipeRepository.save(recipe);
+		recipeService.save(recipe);
 	}
 
 	@DeleteMapping("/recipes/{id}")
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		recipeRepository.deleteById(id);
+		recipeService.delete(id);
 	}
 }

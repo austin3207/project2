@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import com.revature.project2.model.Account;
 import com.revature.project2.service.AccountService;
@@ -58,5 +60,15 @@ public class AccountController {
 		accountService.delete(id);
 
 	}
+	@PostMapping("/login")
+	public boolean login(String email, String password) {
+		boolean validLogin = accountService.login(email, password);
+		return validLogin;
+	}
+	@PostMapping("/registration")
+	public void register(@RequestParam("email") String email, @RequestParam("password") String password, @RequestParam("firstName")String firstName, @RequestParam("lastName")String lastName) {
+		accountService.register(email, password, firstName, lastName);
+	}
+		
 }
 

@@ -19,7 +19,7 @@ import lombok.Data;
 public class Recipe extends SQLTypes{
 	@Id
 	@Column(name="recipe_id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int recipeId;
 	@Column(name= "name")
 	private String name;
