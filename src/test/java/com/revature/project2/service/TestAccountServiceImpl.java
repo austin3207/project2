@@ -13,7 +13,7 @@ public class TestAccountServiceImpl {
 	@DisplayName("Should save account.")
 	public void shouldSaveAccount() {
 		// Print to console which test is starting
-		System.out.println("Entering shouldSaveAccount() test");
+		System.out.println("\nEntering shouldSaveAccount() test");
 
 		// Create new instance of the repository
 		TestAccountRepository testRepository = new TestAccountRepository();
@@ -53,7 +53,7 @@ public class TestAccountServiceImpl {
 	@DisplayName("Should find all accounts.")
 	public void shouldFindAllAccounts() {
 		// Print to console which test is starting
-		System.out.println("Entering shouldFindAllAccounts() test");
+		System.out.println("\nEntering shouldFindAllAccounts() test");
 
 		// Create new instance of the repository
 		TestAccountRepository testRepository = new TestAccountRepository();
@@ -101,7 +101,7 @@ public class TestAccountServiceImpl {
 	@DisplayName("Should find by Id")
 	public void findById() {
 		// Print to console which test is being started
-		System.out.println("Entering findById() test");
+		System.out.println("\nEntering findById() test");
 
 		// Create instance of repository
 		TestAccountRepository testRepository = new TestAccountRepository();
@@ -161,7 +161,7 @@ public class TestAccountServiceImpl {
 	@DisplayName("Should find Account object by Email")
 	public void findByEmail() {
 		// Print to console which test is being started
-		System.out.println("Entering findByEmail() test");
+		System.out.println("\nEntering findByEmail() test");
 
 		// Create instance of repository
 		TestAccountRepository testRepository = new TestAccountRepository();
@@ -222,7 +222,7 @@ public class TestAccountServiceImpl {
 	@DisplayName("Should update Account object")
 	public void update() {
 		// Print to console which test is starting
-		System.out.println("Entering update() test");
+		System.out.println("\nEntering update() test");
 
 		// Create new instance of the repository
 		TestAccountRepository testRepository = new TestAccountRepository();
@@ -294,7 +294,7 @@ public class TestAccountServiceImpl {
 	@DisplayName("Should delete an account according to their id")
 	public void delete() {
 		// Print to console which test is being started
-		System.out.println("Entering delete() test");
+		System.out.println("\nEntering delete() test");
 
 		// Create instance of repository
 		TestAccountRepository testRepository = new TestAccountRepository();
