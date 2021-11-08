@@ -64,27 +64,43 @@ public class AccountServiceImp implements AccountService {
 			return false;
 		}
 	}
-	@Override
-	public void register(String email, String password, String firstName, String lastName) {
+//	@Override
+//	public void register(String email, String password, String firstName, String lastName) {
+//		//check if account already exists
+//		boolean accountDoesNotExist = accountRepository.findByEmail(email).isEmpty();
+//		//Create new account
+//		//Encodes password for storage
+//		BCryptPasswordEncoder bCryptPasswordEncoder =
+//		  new BCryptPasswordEncoder(10, new SecureRandom());
+//		String encodedPassword = bCryptPasswordEncoder.encode(password);
+//		 
+//		if(accountDoesNotExist) {
+//			Account account = new Account();
+//			account.setEmail(email);
+//			account.setPassword(encodedPassword);
+//			account.setFirstName(firstName);
+//			account.setLastName(lastName);
+//			accountRepository.save(account);
+//		}
+//		else {
+//			
+//		}
+//	}
+	public void register(Account account) {
 		//check if account already exists
-		boolean accountDoesNotExist = accountRepository.findByEmail(email).isEmpty();
+		boolean accountDoesNotExist = accountRepository.findByEmail(account.getEmail()).isEmpty();
 		//Create new account
 		//Encodes password for storage
 		BCryptPasswordEncoder bCryptPasswordEncoder =
 		  new BCryptPasswordEncoder(10, new SecureRandom());
-		String encodedPassword = bCryptPasswordEncoder.encode(password);
+		String encodedPassword = bCryptPasswordEncoder.encode(account.getPassword());
 		 
-		if(accountDoesNotExist) {
-			Account account = new Account();
-			account.setEmail(email);
-			account.setPassword(encodedPassword);
-			account.setFirstName(firstName);
-			account.setLastName(lastName);
+		if(accountDoesNotExist) {		
+			account.setPassword(encodedPassword);			
 			accountRepository.save(account);
 		}
 		else {
 			
 		}
 	}
-
 }
