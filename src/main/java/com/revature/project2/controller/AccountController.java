@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -65,10 +66,13 @@ public class AccountController {
 		boolean validLogin = accountService.login(email, password);
 		return validLogin;
 	}
+//	@PostMapping("/registration")
+//	public void register(@RequestParam("email") String email, @RequestParam("password") String password, @RequestParam("firstName")String firstName, @RequestParam("lastName")String lastName) {
+//		accountService.register(email, password, firstName, lastName);
+//	}
 	@PostMapping("/registration")
-	public void register(@RequestParam("email") String email, @RequestParam("password") String password, @RequestParam("firstName")String firstName, @RequestParam("lastName")String lastName) {
-		accountService.register(email, password, firstName, lastName);
-	}
-		
+	public void register(@RequestBody Account account) {
+		accountService.register(account);
+	}	
 }
 
