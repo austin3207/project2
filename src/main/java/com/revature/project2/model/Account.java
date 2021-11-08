@@ -16,7 +16,7 @@ import lombok.Data;
 @Data
 public class Account extends SQLTypes{
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name= "email")
 	private String email;
