@@ -1,12 +1,17 @@
 package com.revature.project2.components;
 
 public class LoginComponent {
-	private String usernameElementID;
-	private String passwordElementID;
-	private String submitElementID;
-	private String titleElementID;
+	private final String usernameElementID = "login_username";
+	private final String passwordElementID = "login_password";
+	private final String submitElementID = "login_submit";
+	private final String titleElementID = "Login Page";
+	private final String registerElementID = "login_register";
 	private String username;
 	private String password;
+	
+	public String getRegisterElementID() {
+		return registerElementID;
+	}
 
 	public String getUsername() {
 		return username;
@@ -16,16 +21,8 @@ public class LoginComponent {
 		return titleElementID;
 	}
 
-	public void setTitleElementID(String titleElementID) {
-		this.titleElementID = titleElementID;
-	}
-
 	public String getSubmitElementID() {
 		return submitElementID;
-	}
-
-	public void setSubmitElementID(String submitElementID) {
-		this.submitElementID = submitElementID;
 	}
 
 	public void setUsername(String username) {
@@ -44,26 +41,12 @@ public class LoginComponent {
 		return usernameElementID;
 	}
 
-	public void setUsernameElementID(String usernameElementID) {
-		this.usernameElementID = usernameElementID;
-	}
-
 	public String getPasswordElementID() {
 		return passwordElementID;
 	}
 
-	public void setPasswordElementID(String passwordElementID) {
-		this.passwordElementID = passwordElementID;
-	}
-
 	public LoginComponent() {
 		super();
-	}
-
-	public LoginComponent(String usernameElementID, String passwordElementID) {
-		super();
-		this.usernameElementID = usernameElementID;
-		this.passwordElementID = passwordElementID;
 	}
 
 	public void attemptLogin(String username, String password) {

@@ -1,5 +1,7 @@
 package com.revature.project2.stepdefinitions;
 
+import com.revature.project2.components.AccountComponent;
+import com.revature.project2.components.LoginComponent;
 import com.revature.project2.components.RegisterComponent;
 
 import io.cucumber.java.en.And;
@@ -8,23 +10,61 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class Register extends StepDefinition {
+	private String email;
+	private String firstName;
+	private String lastName;
+	private String password;
 	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	LoginComponent loginComponent = new LoginComponent();
 	RegisterComponent registerComponent = new RegisterComponent();
+	AccountComponent accountComponent = new AccountComponent();
 
 //	Scenario: Registration Navigation
 	@Given("^I am on the login page$")
 	public void i_am_on_the_login_page() {
-		goToEndpoint("login");
+		goToSite();
 	}
 	
 	@And("^The option is given to register$")
 	public void the_option_is_given_to_register() {
-		checkIfLinkExists("register");
+		checkIfLinkExists(loginComponent.getRegisterElementID());
 	}
 	
 	@When("^I click the register link$")
 	public void i_click_the_register_link() {
-		clickItem("register");
+		clickItem(loginComponent.getRegisterElementID());
 	}
 	
 	@Then("^A registration form appears$")
@@ -39,28 +79,28 @@ public class Register extends StepDefinition {
 //	Scenario: Successful Registration
 	@Given("^I am at the registration form$")
 	public void i_am_at_the_registration_form() {
-		goToEndpoint("login");
-		clickItem("register");
+		goToSite();
+		clickItem(loginComponent.getRegisterElementID());
 	}
 	
 	@When("^I enter first name as Zachary$")
 	public void i_enter_first_name() {
-		sendKeys(registerComponent.getFirstNameElementID(), "Zachary");
+		sendKeys(registerComponent.getFirstNameElementID(), getFirstName());
 	}
 	
 	@And("^I enter last name as Miller$")
 	public void i_enter_last_name() {
-		sendKeys(registerComponent.getLastNameElementID(), "Miller");
+		sendKeys(registerComponent.getLastNameElementID(), getLastName());
 	}
 	
 	@And("^I enter email as zachary.miller@revature.net$")
 	public void i_enter_email() {
-		sendKeys(registerComponent.getEmailElementID(), "zachary.miller@revature.net");
+		sendKeys(registerComponent.getEmailElementID(), getEmail());
 	}
 	
 	@And("^I enter password as P@ssw0rd$")
 	public void i_enter_password() {
-		sendKeys(registerComponent.getPasswordElementID(), "P@ssw0rd");
+		sendKeys(registerComponent.getPasswordElementID(), getPassword());
 	}
 	
 	@And("^I click submit$")
@@ -75,11 +115,8 @@ public class Register extends StepDefinition {
 	
 	@And("^I should see my account profile$")
 	public void i_should_see_my_account_profile() {
-		String url = "http://localhost:8080/api/accounts/"; //URL for accounts
-		String  id = String.valueOf(0); //Retrieve id from newly created account
-		String accountURL = url + id;
-		getDriver().getCurrentUrl().equals(accountURL);
-		getDriver().close();
+		//Perform validation that this is equal to where I am located
+		accountComponent.getTitleElementID();
 	}
 	
 	
@@ -87,8 +124,8 @@ public class Register extends StepDefinition {
 //	Scenario: Registration Cancellation
 	@Given("^I am at the registration form2$")
 	public void i_am_at_the_registration_form2() {
-		goToEndpoint("login");
-		clickItem("register");
+		goToSite();
+		clickItem(loginComponent.getRegisterElementID());
 	}
 	
 	@When("^I click cancel$")

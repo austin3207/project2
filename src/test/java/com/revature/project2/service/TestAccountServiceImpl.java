@@ -1,8 +1,11 @@
 package com.revature.project2.service;
 
+import java.security.SecureRandom;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.revature.project2.model.Account;
 import com.revature.project2.repo.TestAccountRepository;
@@ -193,7 +196,6 @@ public class TestAccountServiceImpl {
 			System.out.println(accountsView);
 		}
 
-
 		// Verify that the Account objects are being located by their email
 		for (Account accountIteration : testRepository.findAll()) {
 			String email = accountIteration.getEmail(); // Get the id for the first object returned and store it
@@ -327,10 +329,9 @@ public class TestAccountServiceImpl {
 		}
 
 		/*
-		 * Get the id of the first object 
-     * Pass the stored id as an argument in the repository's findById() method
-		 * Compare the object with the Account object 
-		 * If the same, delete the object
+		 * Get the id of the first object Pass the stored id as an argument in the
+		 * repository's findById() method Compare the object with the Account object If
+		 * the same, delete the object
 		 */
 		int id = account.getId(); // Get the id for the first object returned and store it
 		Account thisAccount = testRepository.findById(id);
@@ -341,10 +342,62 @@ public class TestAccountServiceImpl {
 			});
 			Assertions.assertEquals(1, testRepository.findAll().size());
 		}
-    
+
 		for (Account accountIteration : testRepository.findAll()) {
 			testRepository.delete(accountIteration.getId());
 		}
+	}
+
+	@Test
+	@DisplayName("Should register an account with hashed password")
+	public void register() {
+		System.out.println("\nEntering 'register()' method");
+		// Create instance of repository
+		TestAccountRepository testRepository = new TestAccountRepository();
+
+		Account account = new Account();
+
+		// check if account already exists
+		boolean accountDoesNotExist = testRepository.findByEmail(account.getEmail()) == null;
+
+		// Create Account
+		account.setEmail("zachary.miller@revature.net");
+		account.setFirstName("Zachary");
+		account.setLastName("Miller");
+		account.setPassword("P@ssw0rd");
+
+		// Ensure the Account object is not empty and print a line confirming
+		Assertions.assertNotNull(account);
+		System.out.println("account added as entity");
+
+		// Encodes password for storage
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(10, new SecureRandom());
+		String encodedPassword = bCryptPasswordEncoder.encode(account.getPassword());
+
+		if (accountDoesNotExist) {
+			account.setPassword(encodedPassword);
+			testRepository.save(account);
+
+			/*
+			 * Perform save() method and check to ensure that a findAll() call on the
+			 * repository does not return empty
+			 */
+			Assertions.assertFalse(testRepository.findAll().isEmpty());
+			System.out.println("account added to 'repository'");
+
+			// Print the Account object to the console
+			for (Account accountsView : testRepository.findAll()) {
+				System.out.println(accountsView);
+			}
+
+			// Remove all objects from the repository
+			for (Account accountIteration : testRepository.findAll()) {
+				testRepository.delete(accountIteration.getId());
+			}
+		} else {
+
+		}
+
 	}
 
 }

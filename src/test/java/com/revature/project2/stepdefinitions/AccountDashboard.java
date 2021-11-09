@@ -14,7 +14,7 @@ public class AccountDashboard extends StepDefinition {
 	//Opens chrome and navigates to dashboard
 	@Given("^I am on my profile page$")
 	public void i_am_on_my_profile_page() {
-		goToEndpoint("accounts/1");
+		goToSite();
 	}
 
 	//Verifies that the page I am sent to is the profile page
