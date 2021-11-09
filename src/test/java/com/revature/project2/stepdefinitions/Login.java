@@ -14,9 +14,9 @@ public class Login extends StepDefinition {
 	AccountComponent accountComponent = new AccountComponent();
 	
 	//Opens chrome and navigates to login page
-	@Given("^I am on /api/login$")
-	public void i_am_on_api_login() {
-		goToEndpoint("login");
+	@Given("^I am on landing page$")
+	public void i_am_on_landing_page() {
+		goToSite();
 	}
 
 	//Enters username

@@ -1,14 +1,13 @@
 package com.revature.project2.components;
 
 public class RegisterComponent {
-	private final String endpoint = "register";
 	private final String titleElementID = "Registration Form";
-	private final String emailElementID = "email";
-	private final String firstNameElementID = "firstName";
-	private final String LastNameElementID = "lastName";
-	private final String passwordElementID = "password";
-	private final String submitElementID = "submit";
-	private final String cancelElementID = "cancel";
+	private final String emailElementID = "register_email";
+	private final String firstNameElementID = "register_firstName";
+	private final String LastNameElementID = "register_lastName";
+	private final String passwordElementID = "register_password";
+	private final String submitElementID = "register_submit";
+	private final String cancelElementID = "register_cancel";
 
 	public String getCancelElementID() {
 		return cancelElementID;
@@ -37,9 +36,4 @@ public class RegisterComponent {
 	public String getPasswordElementID() {
 		return passwordElementID;
 	}
-
-	public String getEndpoint() {
-		return endpoint;
-	}
-
 }
