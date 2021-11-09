@@ -16,6 +16,9 @@ import lombok.Data;
 @Entity
 @Table(name="recipe", schema="project2")
 @Data
+/*
+ * Object mapped to the Recipe table
+ */
 public class Recipe extends SQLTypes{
 	@Id
 	@Column(name="recipe_id")
@@ -37,5 +40,7 @@ public class Recipe extends SQLTypes{
 	private String[] ingredients;
 	@Column(name= "user_id")
 	private int userId;
+	@Column(name="image_path")
+	private String imagePath;
 	
 }

@@ -22,39 +22,39 @@ public class RecipeController {
 	@Autowired
 	RecipeService recipeService;
 	
+	//Endpoint for all existing recipes
 	@GetMapping("/recipes")
 	public List<Recipe> findAll() {
-		// TODO Auto-generated method stub
+		
 		return recipeService.findAll();
 	}
-
+	
+	//Endpoint for specific recipes
 	@GetMapping("/recipes/{id}")
-	public Recipe findById(@PathVariable int id) {
-		// TODO Auto-generated method stub
+	public Recipe findById(@PathVariable int id) {	
 		return recipeService.findById(id);
 	}
-
+	
+	//Endpoint for searching recipes by category
 	@GetMapping("/findByCategory/{category}")
-	public List<Recipe> findByCategory(@PathVariable String category) {
-		// TODO Auto-generated method stub
+	public List<Recipe> findByCategory(@PathVariable String category) {		
 		return recipeService.findByCategory(category);
 	}
-
+	//Endpoint for saving a new Recipe to the DB
 	@PostMapping("/recipes")
-	public void save(@RequestBody Recipe recipe) {
-		// TODO Auto-generated method stub
+	public void save(@RequestBody Recipe recipe) {	
 		recipeService.save(recipe);
 	}
-
+	
+	//Endpoint for updating existing Recipes
 	@PutMapping("/recipes/{id}")
 	public void update(int id, Recipe recipe) {
-		// TODO Auto-generated method stub
 		recipeService.save(recipe);
 	}
-
+	
+	//Endpoint for deleting existing Recipes
 	@DeleteMapping("/recipes/{id}")
-	public void delete(int id) {
-		// TODO Auto-generated method stub
+	public void delete(int id) {	
 		recipeService.delete(id);
 	}
 }

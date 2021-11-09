@@ -21,58 +21,60 @@ import com.revature.project2.service.AccountService;
 public class AccountController {
 	@Autowired
 	AccountService accountService;
-
+	
+	//Endpoint for accessing all existing Accounts
 	@GetMapping("/accounts")
 	public List<Account> findAll() {
 		return accountService.findAll();
 	}
-
+	
+	//Endpoint for finding Accounts by email
 	@GetMapping("/accountsByEmail/{email}")
 	public List<Account> findByEmail(@PathVariable String email) {
 		return accountService.findByEmail(email);
 	}
-
+	
+	//Endpoint for finding Accounts by ID
 	@GetMapping("/accounts/{id}")
 	public Account findById(@PathVariable int id) {
 		return accountService.findById(id);
 	}
-
+	
+	//Endpoint for saving an Account to the DB
 	@PostMapping("/accounts")
 	public void save(Account customer) {
 		accountService.save(customer);
 
 	}
-
-	@PostMapping("/accounts/bulk")
-	public void save(Account[] accounts) {
-		for (Account account : accounts) {
-			accountService.save(account);
-		}
-	}
-
+	
+	//Endpoint for updating an existing Account by ID
 	@PutMapping("/accounts/{id}")
 	public void update(int id, Account account) {
 		accountService.save(account);
 
 	}
-
+	//Endpoint for deleting an Account by ID
 	@DeleteMapping("/accounts/{id}")
 	public void delete(int id) {
 		accountService.delete(id);
 
 	}
+	
+	//Endpoint for Login attempts
 	@PostMapping("/login")
 	public boolean login(@RequestBody Account account) {
 		boolean validLogin = accountService.login(account.getEmail(), account.getPassword());
 		return validLogin;
 	}
-//	@PostMapping("/registration")
-//	public void register(@RequestParam("email") String email, @RequestParam("password") String password, @RequestParam("firstName")String firstName, @RequestParam("lastName")String lastName) {
-//		accountService.register(email, password, firstName, lastName);
-//	}
+	
+	//Endpoint for Registering a new Account
 	@PostMapping("/registration")
-	public void register(@RequestBody Account account) {
+	public boolean register(@RequestBody Account account) {
 		accountService.register(account);
+		if(!accountService.findByEmail(account.getEmail()).isEmpty()) {
+			return true;
+		}
+		return false;
 	}	
 }
 

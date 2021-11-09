@@ -13,6 +13,5 @@ public interface AccountService {
 	public void update(int id, Account account);
 	public void delete(int id);
 	public boolean login(String email, String password);
-//	public void register(String email, String password, String firstName, String lastName);
 	public void register(Account account);
 }
