@@ -14,6 +14,9 @@ import lombok.Data;
 @Entity
 @Table(name="account", schema="project2")
 @Data
+/*
+ * Object mapped to Account table in DB
+ */
 public class Account extends SQLTypes{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
