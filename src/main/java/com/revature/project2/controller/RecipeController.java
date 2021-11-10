@@ -50,13 +50,13 @@ public class RecipeController {
 	
 	//Endpoint for updating existing Recipes
 	@PutMapping("/recipes/{id}")
-	public void update(int id, Recipe recipe) {
+	public void update(@PathVariable int id, @RequestBody Recipe recipe) {
 		recipeService.save(recipe);
 	}
 	
 	//Endpoint for deleting existing Recipes
 	@DeleteMapping("/recipes/{id}")
-	public void delete(int id) {	
+	public void delete(@PathVariable int id) {	
 		recipeService.delete(id);
 	}
 }
