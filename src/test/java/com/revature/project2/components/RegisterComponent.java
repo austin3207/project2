@@ -1,39 +1,39 @@
 package com.revature.project2.components;
 
 public class RegisterComponent {
-	private final String titleElementID = "Registration Form";
-	private final String emailElementID = "register_email";
-	private final String firstNameElementID = "register_firstName";
-	private final String LastNameElementID = "register_lastName";
-	private final String passwordElementID = "register_password";
-	private final String submitElementID = "register_submit";
-	private final String cancelElementID = "register_cancel";
+	private final String emailIdentifier = "email";
+	private final String firstNameIdentifier = "firstName";
+	private final String LastNameIdentifier = "lastName";
+	private final String passwordIdentifier = "password";
+	private final String confirmPasswordIdentifier = "password2";
+	private final String submitIdentifier = ".btn";
+	private final String cancelIdentifier = "Sign In";
 
-	public String getCancelElementID() {
-		return cancelElementID;
+	public String getCancelIdentifier() {
+		return cancelIdentifier;
 	}
 
-	public String getSubmitElementID() {
-		return submitElementID;
+	public String getSubmitIdentifier() {
+		return submitIdentifier;
 	}
 
-	public String getTitleElementID() {
-		return titleElementID;
+	public String getEmailIdentifier() {
+		return emailIdentifier;
 	}
 
-	public String getEmailElementID() {
-		return emailElementID;
+	public String getFirstNameIdentifier() {
+		return firstNameIdentifier;
 	}
 
-	public String getFirstNameElementID() {
-		return firstNameElementID;
+	public String getLastNameIdentifier() {
+		return LastNameIdentifier;
 	}
 
-	public String getLastNameElementID() {
-		return LastNameElementID;
+	public String getPasswordIdentifier() {
+		return passwordIdentifier;
 	}
 
-	public String getPasswordElementID() {
-		return passwordElementID;
+	public String getConfirmPasswordIdentifier() {
+		return confirmPasswordIdentifier;
 	}
 }

@@ -1,28 +1,28 @@
 package com.revature.project2.components;
 
 public class LoginComponent {
-	private final String usernameElementID = "login_username";
-	private final String passwordElementID = "login_password";
-	private final String submitElementID = "login_submit";
-	private final String titleElementID = "Login Page";
-	private final String registerElementID = "login_register";
+	private final String usernameIdentifier = "email";
+	private final String passwordIdentifier = ".ng-untouched";
+	private final String submitIdentifier = ".btn";
+	private final String titleIdentifier = "Login Page";
+	private final String registerIdentifier = "Register here";
 	private String username;
 	private String password;
 	
-	public String getRegisterElementID() {
-		return registerElementID;
+	public String getRegisterIdentifier() {
+		return registerIdentifier;
 	}
 
 	public String getUsername() {
 		return username;
 	}
 
-	public String getTitleElementID() {
-		return titleElementID;
+	public String getTitleIdentifier() {
+		return titleIdentifier;
 	}
 
-	public String getSubmitElementID() {
-		return submitElementID;
+	public String getSubmitIdentifier() {
+		return submitIdentifier;
 	}
 
 	public void setUsername(String username) {
@@ -37,12 +37,12 @@ public class LoginComponent {
 		this.password = password;
 	}
 
-	public String getUsernameElementID() {
-		return usernameElementID;
+	public String getUsernameIdentifier() {
+		return usernameIdentifier;
 	}
 
-	public String getPasswordElementID() {
-		return passwordElementID;
+	public String getPasswordIdentifier() {
+		return passwordIdentifier;
 	}
 
 	public LoginComponent() {
