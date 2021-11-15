@@ -1,28 +1,18 @@
 package com.revature.project2.stepdefinitions;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.revature.project2.util.WebDriverChrome;
 
 public class StepDefinition {
 	private final WebDriver driver = WebDriverChrome.getWebDriver("chrome");
-	private final String baseURL = "http://localhost:4200";
-	private String classID;
-	private String elementID;
-	private String elementName;
-	private String cssSelector;
-	private String xPath;
+	private final String baseURL = "http://localhost:5500";
+	private String identifier;
 	private String linkText;
-	
-
-	public String getElementName() {
-		return elementName;
-	}
-
-	public void setElementName(String elementName) {
-		this.elementName = elementName;
-	}
 
 	public String getLinkText() {
 		return linkText;
@@ -32,36 +22,12 @@ public class StepDefinition {
 		this.linkText = linkText;
 	}
 
-	public String getClassID() {
-		return classID;
+	public String identifier() {
+		return identifier;
 	}
 
-	public void setClassID(String classID) {
-		this.classID = classID;
-	}
-
-	public String getCssSelector() {
-		return cssSelector;
-	}
-
-	public void setCssSelector(String cssSelector) {
-		this.cssSelector = cssSelector;
-	}
-
-	public String getxPath() {
-		return xPath;
-	}
-
-	public void setxPath(String xPath) {
-		this.xPath = xPath;
-	}
-
-	public String getElementID() {
-		return elementID;
-	}
-
-	public void setElementID(String elementID) {
-		this.elementID = elementID;
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
 	}
 
 	public WebDriver getDriver() {
@@ -71,9 +37,11 @@ public class StepDefinition {
 	public String getBaseURL() {
 		return baseURL;
 	}
-	
+
 	public void goToSite() {
 		driver.navigate().to(baseURL);
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 	}
 
 	public boolean checkIfLinkExists(String linkText) {
@@ -81,12 +49,49 @@ public class StepDefinition {
 		return exists;
 	}
 
-	public void sendKeys(String elementID, String keys) {
-		driver.findElement(By.id(elementID)).sendKeys(keys);
+	public void sendKeys(String identifier, String keys, String elementType) {
+		switch (elementType) {
+
+		case ("css selector"):
+			driver.findElement(By.cssSelector(identifier)).sendKeys(keys);
+			break;
+
+		case ("id"):
+			driver.findElement(By.id(identifier)).sendKeys(keys);
+			break;
+		}
 	}
 
-	public void clickItem(String elementID) {
-		driver.findElement(By.id(elementID)).click();
+	public void clickItem(String identifier, String elementType) {
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		switch (elementType) {
+
+		case ("css selector"):
+			WebElement webElementByCssSelector = driver.findElement(By.cssSelector(identifier));
+			if (webElementByCssSelector.getTagName().equals("button")) {
+				webElementByCssSelector.submit();
+			} else {
+				webElementByCssSelector.click();
+			}
+			
+			break;
+
+		case ("id"):
+			WebElement webElementById = driver.findElement(By.id(identifier));
+			if (webElementById.getTagName().equals("button")) {
+				webElementById.submit();
+			} else {
+				webElementById.click();
+			}
+			break;
+			
+		case ("linkText"): 
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.findElement(By.linkText(identifier)).click();
+			break;
+		}
+		
 	}
 
 	public String checkCurrentPage() {
@@ -131,7 +136,7 @@ public class StepDefinition {
 	public StepDefinition() {
 		super();
 	}
-	
+
 }
 
 //The following commented out lines were based on multi-page site

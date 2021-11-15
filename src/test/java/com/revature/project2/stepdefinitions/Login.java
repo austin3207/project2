@@ -22,31 +22,30 @@ public class Login extends StepDefinition {
 	//Enters username
 	@When("^username is zachary.miller@revature.net$")
 	public void username_is_correct() {
-		sendKeys(loginComponent.getUsernameElementID(), "Zachary.miller@revature.net");
+		sendKeys(loginComponent.getUsernameIdentifier(), "zachary.miller@revature.net", "id");
 	}
 
 	//Enters password
 	@And("^password is P@ssw0rd$")
 	public void password_is_correct() {
-		sendKeys(loginComponent.getPasswordElementID(), "P@ssw0rd");
+		clickItem(loginComponent.getPasswordIdentifier(), "css selector");
+		System.out.println(loginComponent.getPasswordIdentifier());
+		sendKeys(loginComponent.getPasswordIdentifier(), "P@ssw0rd", "css selector");
 	}
 
 	//Clicks submit
 	@And("^Submit button is pressed$") 
 	public void submit_button_is_pressed() {
-		clickItem(loginComponent.getSubmitElementID());
+		clickItem(loginComponent.getSubmitIdentifier(), "css selector");
 	}
 
 	//Verifies that the page I am sent to is the profile page
 	@Then("^I should be presented with my profile page$") 
 	public void i_should_be_presented_with_my_profile_page() {
 		String url = checkCurrentPage();
-		int accountIdIndex = url.lastIndexOf('/', 0);
-		String accountId = url.substring(accountIdIndex);
-		System.out.println(accountId);
-//		if(url.equals(accountComponent.getURL())) {
-//			System.out.println("Profile page loaded");
-//		}
+		if(url.equals(getBaseURL()+"/recipes")) {
+			System.out.println("Recipes page loaded");
+		}
 		getDriver().close();
 	}
 }
